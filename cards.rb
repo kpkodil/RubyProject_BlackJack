@@ -1,3 +1,5 @@
+require './player.rb'
+
 class Cards
 
 @@deck = []
@@ -12,12 +14,12 @@ class Cards
 		return @@deck
 	end
 
-	def self.deal_the_card
+	def self.deal_the_card(player)
 		card = @@deck.sample
-		puts card.nominal + card.suit
+		#puts card.nominal + card.suit
 		card_index = @@deck.index(card)
 		@@deck.delete_at(card_index)
-		return card
+		player.hand << card
 	end
 
 attr_reader :nominal, :suit
@@ -27,16 +29,5 @@ attr_reader :nominal, :suit
 		@suit = suit	
 	end
 
-	def self.get_card_points(card)
-		case card.nominal.to_i
-		when 2..10
-			return card.nominal.to_i
-		when 0
-			if card.nominal == 'A'
-				
-			else
-				return 10
-			end
-		end
-	end
+
 end 
