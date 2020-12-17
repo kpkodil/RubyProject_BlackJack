@@ -1,15 +1,13 @@
-class Player
+require './programdata.rb'
 
-attr_accessor :hand
+class Players
+
+	attr_accessor :name, :hand, :money
 
 	def initialize(name)
 		@name = name
 		@hand = []
 		@money = 100
-	end
-
-	def skip
-
 	end
 
 	def get_points
@@ -33,5 +31,29 @@ attr_accessor :hand
 			end
 		end
 		hand_points
+	end
+
+	def skip_turn
+		
+	end
+
+	def show_hand
+		self.hand
+	end
+
+	def get_card
+		Cards.deal_the_card(self)
+	end
+end
+
+class Dealer < Players
+	
+	def choose
+		case 
+		when get_points >= 17
+			skip_turn
+		when get_points < 17
+			get_card	
+		end
 	end
 end
