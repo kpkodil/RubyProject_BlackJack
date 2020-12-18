@@ -21,7 +21,7 @@ class Interface
   def start_game
     puts ''
     @data.bank = 20
-    @data.deck = Cards.initialize_deck
+    @data.deck = Card.initialize_deck
     reset_players_hands
     bet
     deal_the_cards(2)
