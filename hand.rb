@@ -34,9 +34,4 @@ attr_accessor :cards
 	  end
 	  hand_points
 	end
-
-  # def show_cards
-  #   @cards
-  # end	
-
 end

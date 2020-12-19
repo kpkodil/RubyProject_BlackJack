@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 # require './hand'
-require './programdata'
+
 
 class Players
   attr_accessor :name, :hand, :money
@@ -13,46 +13,22 @@ class Players
     @money = START_MONEY
   end
 
-  # def get_points
-  #   hand_points = 0
-  #   @hand.each do |card|
-  #     case card.nominal.to_i
-  #     when 2..10
-  #       hand_points += card.nominal.to_i
-  #     when 0
-  #       hand_points += if card.nominal == 'A'
-  #                        if hand_points + 11 >= 21
-  #                          1
-  #                        else
-  #                          11
-  #                        end
-  #                      else
-  #                        10
-  #                      end
-  #     else
-  #       return card
-  #     end
-  #   end
-  #   hand_points
-  # end
-
   def skip_turn; end
 
-  # def show_hand
-  #   hand
-  # end
-
-  def get_card
-    Deck.deal_the_card(self)
-  end
+  def get_card(deck)
+    card = deck.sample
+    card_index = deck.index(card)
+    deck.delete_at(card_index)
+    @hand.cards << card
+  end	
 end
 
 class Dealer < Players
-  def choose
-    if get_points >= 17
+  def choose(deck)
+    if hand.get_points >= 17
       skip_turn
-    elsif get_points < 17
-      get_card
+    elsif hand.get_points < 17
+      get_card(deck)
     end
   end
 end

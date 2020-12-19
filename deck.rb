@@ -1,13 +1,8 @@
-#Создан класс Deck
-
 require './card.rb'
-# require './player.rb'
 
 class Deck
 
 attr_accessor :deck
-
-	#Метод создания колоды перенесен из класса Card
 
 	def initialize
 		@deck = []
@@ -17,14 +12,5 @@ attr_accessor :deck
       end
     end
 	end
-
-	#Метод перенесен из класса Card
-
-  def deal_the_card(player)
-    card = @deck.sample
-    card_index = @deck.index(card)
-    @deck.delete_at(card_index)
-    player.hand << card
-  end	
 
 end
