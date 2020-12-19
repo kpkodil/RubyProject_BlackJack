@@ -1,16 +1,16 @@
-require './card.rb'
+# frozen_string_literal: true
+
+require './card'
 
 class Deck
+  attr_accessor :deck
 
-attr_accessor :deck
-
-	def initialize
-		@deck = []
-	  Card.const_get('SUITS').each do |suit|
-      Card.const_get('NOMINALS').each do |nominal|
+  def initialize
+    @deck = []
+    Card::SUITS.each do |suit|
+      Card::NOMINALS.each do |nominal|
         @deck << Card.new(nominal, suit)
       end
     end
-	end
-
+  end
 end

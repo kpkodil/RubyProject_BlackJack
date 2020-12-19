@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './programdata'
 require './interface'
 require './players'
@@ -5,27 +7,21 @@ require './hand'
 require './card'
 require './deck'
 
-#КАК ПЕРЕДАВАТЬ ЗНАЧЕНИЯ ИЗ МЕТОДОВ ЛОГИКИ В КЛАСС ИНТЕРФЕЙСА?
-#НУЖНО ЛИ ДЕЛАТЬ ИНТЕРФЕЙС ЧЕРЕЗ МЕТОДЫ КЛАССА?
-
-
-
 class Logic
+  BET = 10
 
-BET = 10
-
-attr_accessor :data
+  attr_accessor :data
 
   def initialize(data)
     @data = data
   end
 
   def initialize_players
-  	@data.players << Dealer.new('Dealer')
-  	Interface.menu
-  	name = gets.chomp
-  	@data.players << Players.new(name)
-  	start_game
+    @data.players << Dealer.new('Dealer')
+    Interface.menu
+    name = gets.chomp
+    @data.players << Players.new(name)
+    start_game
   end
 
   def start_game
@@ -82,8 +78,8 @@ attr_accessor :data
     play_again?
   end
 
-   def play_again?
-   	Interface.play_again?
+  def play_again?
+    Interface.play_again?
     choice = gets.chomp
     case choice
     when '1'
@@ -99,9 +95,9 @@ attr_accessor :data
       players_21 << player if player.hand.get_points > 21
     end
     players_21
-  end  
+  end
 
-   def reset_players_hands
+  def reset_players_hands
     @data.players.map do |player|
       player.hand.cards = []
     end
@@ -115,7 +111,7 @@ attr_accessor :data
         Interface.out_of_money(player)
       end
     end
-  end  
+  end
 
   def deal_the_cards(quantity)
     @data.players.each do |player|
@@ -131,12 +127,12 @@ attr_accessor :data
     end
   end
 
-   def show_players_cards
+  def show_players_cards
     @data.players.each do |player|
       Interface.show_player_cards(player)
     end
   end
-  
+
   def self.seed
     logic = Logic.new(ProgramData.new).initialize_players
   end

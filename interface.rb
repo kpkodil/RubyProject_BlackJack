@@ -3,7 +3,6 @@
 require './logic'
 
 class Interface
-
   def self.menu
     puts 'Добро пожаловать в игру Black Jack!'
     puts 'Введите Ваше имя'
@@ -18,23 +17,23 @@ class Interface
   end
 
   def self.quit_game
-  	abort 'Вы вышли из игры'
+    abort 'Вы вышли из игры'
   end
 
   def self.drow
-  	puts 'НИЧЬЯ, ДЕНЬГИ УХОДЯТ В КАЗИНО'
+    puts 'НИЧЬЯ, ДЕНЬГИ УХОДЯТ В КАЗИНО'
   end
 
   def self.player_win
-  	puts 'ВЫ ВЫЙГРАЛИ'
+    puts 'ВЫ ВЫЙГРАЛИ'
   end
 
   def self.dealer_win
-  	puts 'ВЫЙГРАЛ ДИЛЕР'
+    puts 'ВЫЙГРАЛ ДИЛЕР'
   end
 
   def self.out_of_money(player)
-  	abort "У игрока #{player.name} закончились деньги."
+    abort "У игрока #{player.name} закончились деньги."
   end
 
   def self.play_again?
@@ -43,13 +42,13 @@ class Interface
   end
 
   def self.show_player_money(player)
-      puts "Деньги игрока #{player.name}: #{player.money}"
+    puts "Деньги игрока #{player.name}: #{player.money}"
   end
 
   def self.show_player_cards(player)
     puts "Карты #{player.name}"
     player.hand.cards.each do |card|
-      puts "#{card.name} "
+      puts "#{card.nominal}#{card.suit} "
     end
     puts "Очки игрока #{player.name} : #{player.hand.get_points}"
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-# require './hand'
 
+# require './hand'
 
 class Players
   attr_accessor :name, :hand, :money
@@ -20,7 +20,7 @@ class Players
     card_index = deck.index(card)
     deck.delete_at(card_index)
     @hand.cards << card
-  end	
+  end
 end
 
 class Dealer < Players
